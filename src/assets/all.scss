@@ -1,0 +1,7 @@
+
+@import "bootstrap/scss/functions"; //匯入自定義bs，先將function取出來
+@import "./variables";  //匯入自定義的變數
+@import "bootstrap/scss/bootstrap";  //匯入自定義的bs
+
+//再去main.js匯入
+
