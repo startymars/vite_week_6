@@ -1,0 +1,1 @@
+import{_ as o,o as s,c as t,d as e}from"./index-cba797ed.js";const c={},n={class:"home"},_=e("p",null,"這是首頁",-1),a=e("hr",null,null,-1),r=[_,a];function d(l,i,p,h,u,f){return s(),t("div",n,r)}const $=o(c,[["render",d]]);export{$ as default};
