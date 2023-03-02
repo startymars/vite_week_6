@@ -74,7 +74,6 @@ export default {
         .get(`${VITE_APP_URL}/v2/api/${VITE_APP_PATH}/products/all`)
         .then((res) => {
           this.products = res.data.products;
-          console.log('產品列表', this.products);
         })
         .catch((err) => {
           alert(err.data);
@@ -89,12 +88,12 @@ export default {
       this.$http
         .post(`${VITE_APP_URL}/v2/api/${VITE_APP_PATH}/cart`, { data })
         .then((res) => {
-          console.log('加入購物車:', res.data);
+          alert(res.data.message);
           this.cartStatus = true;
           this.loadingItem = '';
         })
         .catch((err) => {
-          console.log(err.data.message);
+          alert(err.data.message);
         });
     },
   },

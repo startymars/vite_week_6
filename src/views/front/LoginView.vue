@@ -56,12 +56,10 @@ export default {
         .post(`${VITE_APP_URL}/v2/admin/signin`, this.temp)
         .then((res) => {
           const { token, expired } = res.data;
-          console.log(token, expired);
           document.cookie = `week2Token=${token};expires=${new Date(expired)};`;
           this.$router.push('/admin');
         })
         .catch((err) => {
-          console.dir(err);
           alert(err.response.data.message);
         });
     },

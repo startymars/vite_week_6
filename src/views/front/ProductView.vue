@@ -15,13 +15,11 @@ export default {
   },
   methods: {
     getProducts() {
-      console.log(this.$route.params);
       const { id } = this.$route.params;
       this.$http
         .get(`${VITE_APP_URL}/v2/api/${VITE_APP_PATH}/product/${id}`)
         .then((res) => {
           this.product = res.data.product;
-          console.log('單一產品列表', this.product);
         })
         .catch((err) => {
           alert(err.data);

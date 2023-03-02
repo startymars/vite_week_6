@@ -178,7 +178,7 @@ export default {
   },
   methods: {
     onSubmit() {
-      console.log(this.form);
+      alert(this.form);
     },
     isPhone(value) {
       const phoneNumber = /^(09)[0-9]{8}$/;
@@ -188,7 +188,6 @@ export default {
       this.$http
         .get(`${VITE_APP_URL}/v2/api/${VITE_APP_PATH}/cart`)
         .then((res) => {
-          console.log('取得購物車', res.data.data);
           this.cart = res.data.data;
           if (res.data.data.carts.length) {
             this.cartStatus = true;
@@ -211,7 +210,7 @@ export default {
           data,
         })
         .then((res) => {
-          console.log('更新購物車', res.data);
+          alert(res.data.message);
           this.getCarts();
           this.loadingItem = '';
         })
@@ -224,7 +223,7 @@ export default {
       this.$http
         .delete(`${VITE_APP_URL}/v2/api/${VITE_APP_PATH}/cart/${item.id}`)
         .then((res) => {
-          console.log('刪除購物車品項', res.data);
+          alert(res.data.message);
           this.getCarts();
           this.loadingItem = '';
         });
@@ -233,7 +232,7 @@ export default {
       this.$http
         .delete(`${VITE_APP_URL}/v2/api/${VITE_APP_PATH}/carts`)
         .then((res) => {
-          console.log(res.data.message);
+          alert(res.data.message);
           this.cartStatus = false;
           this.getCarts();
         })
@@ -252,7 +251,7 @@ export default {
           this.getCarts();
         })
         .catch((err) => {
-          console.log(err.data);
+          alert(err.data);
         });
     },
   },

@@ -33,7 +33,7 @@ export default {
           }
         })
         .catch((err) => {
-          console.dir(err);
+          alert(err.response.data.message);
           this.$router.push('/login');
         });
     },
