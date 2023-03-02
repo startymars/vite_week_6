@@ -163,6 +163,7 @@ export default {
   data() {
     return {
       cart: [],
+      loadingItem: '',
       cartStatus: false,
       form: {
         user: {
