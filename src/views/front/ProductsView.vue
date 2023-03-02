@@ -33,14 +33,22 @@
           </div>
         </td>
         <td>
-          <router-link :to="`./product/${product.id}`" class="btn btn-primary"
+          <router-link
+            :to="`./product/${product.id}`"
+            class="btn btn-outline-secondary"
+            :disabled="product.id === loadingItem"
             >查看詳細內頁</router-link
           >
           <button
             type="button"
-            class="btn btn-secondary"
+            class="btn btn-primary"
             @click="addToCart(product.id)"
+            :disabled="product.id === loadingItem"
           >
+            <i
+              class="fas fa-spinner fa-pulse"
+              v-if="loadingItem === product.id"
+            ></i>
             加入購物車
           </button>
         </td>
@@ -57,6 +65,7 @@ export default {
   data() {
     return {
       products: [],
+      loadingItem: '',
     };
   },
   methods: {
@@ -66,6 +75,9 @@ export default {
         .then((res) => {
           this.products = res.data.products;
           console.log('產品列表', this.products);
+        })
+        .catch((err) => {
+          alert(err.data);
         });
     },
     addToCart(id) {
@@ -73,13 +85,16 @@ export default {
         product_id: id,
         qty: 1,
       };
+      this.loadingItem = id;
       this.$http
         .post(`${VITE_APP_URL}/v2/api/${VITE_APP_PATH}/cart`, { data })
         .then((res) => {
           console.log('加入購物車:', res.data);
+          this.cartStatus = true;
+          this.loadingItem = '';
         })
         .catch((err) => {
-          console.log(err.data);
+          console.log(err.data.message);
         });
     },
   },

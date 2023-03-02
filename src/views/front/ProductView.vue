@@ -22,6 +22,9 @@ export default {
         .then((res) => {
           this.product = res.data.product;
           console.log('單一產品列表', this.product);
+        })
+        .catch((err) => {
+          alert(err.data);
         });
     },
   },
